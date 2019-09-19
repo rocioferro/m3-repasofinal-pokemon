@@ -1,0 +1,31 @@
+
+.pokemon_type-list {
+  list-style: none;
+  padding-left: 10px;
+  padding-top:0px;
+  display: flex;
+  height:20px;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+.pokemon_element-name {
+  border-top: 0.5px solid black;
+  border-bottom: 0.5px solid black;
+  padding: 5px 5px;
+
+
+}
+
+.pokemon_type-element {
+  
+  margin-left: 5px;
+  background-color: grey;
+  border-radius: 10px;
+  color: white;
+  font-size: 10px;
+  padding: 5px;
+  text-transform: uppercase;
+  
+}
