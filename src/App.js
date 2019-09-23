@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.scss';
-import PokeList from './components/PokeList'
+import Home from './components/Home';
+import {Switch, Route} from 'react-router-dom';
+import Detail from './components/Detail';
 
- const endpoint = 'https://raw.githubusercontent.com/Adalab/m3-evaluacion-intermedia-oneeyedman/componentbranch/pokemons.json'
-
+const endpoint = 'https://raw.githubusercontent.com/Adalab/m3-evaluacion-intermedia-oneeyedman/componentbranch/pokemons.json'
 
 class App extends React.Component {
   constructor(props) {
@@ -26,8 +27,7 @@ class App extends React.Component {
       this.setState({
         pokemons:data
       })
-    });
-    
+    });    
 }
 
 filterName(event){
@@ -38,16 +38,26 @@ filterName(event){
 }
   
   render() {
-    console.log(this.state.pokemons);
     return (
       <div className="App">
         <h1 className="title">Mi lista de pokemon
         </h1>
-          <input type="text" value={this.state.chosenName} onChange={this.filterName}></input>
-          <PokeList 
-            pokemons={this.state.pokemons}
-            chosenName={this.state.chosenName}
-          />
+          <Switch>
+            <Route exact path="/" render={()=>
+             < Home 
+                 filterName={this.filterName}
+                 chosenName={this.state.chosenName}
+                 pokemons={this.state.pokemons}
+                           />
+                     } />
+            <Route path="/detail/:id" render={
+              routerProps=>
+              <Detail
+                routerProps={routerProps}
+                pokemons={this.state.pokemons}
+              />
+            }/>
+          </Switch>
       </div>
     );
   }
